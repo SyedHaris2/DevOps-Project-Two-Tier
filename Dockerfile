@@ -4,8 +4,14 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Install MySQL dependencies
-RUN apt-get update && apt-get install -y gcc default-libmysqlclient-dev pkg-config && \
-    rm -rf /var/lib/apt/lists/*
+# Install build dependencies in a single layer and clean up
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        gcc \
+        default-libmysqlclient-dev \
+        pkg-config \
+    && rm -rf /var/lib/apt/lists/*
+
 
 # Install Python dependencies
 COPY requirements.txt .
