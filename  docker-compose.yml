@@ -19,7 +19,7 @@ services:
     build: .
     container_name: two-tier-app
     ports:
-      - "5000:5000"
+      - "3000:3000"
     environment:
       MYSQL_HOST: mysql
       MYSQL_USER: root
